@@ -41,11 +41,14 @@ jobs:
           path: build
   
   buildInfra:
-    name: Build App
+    name: Build Infra
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./app
+    permissions:
+      id-token: write 
+      contents: read 
     steps:
     - uses: actions/checkout@v2
     - uses: hashicorp/setup-terraform@v1
