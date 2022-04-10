@@ -4,8 +4,8 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket = "builders-scheduler-terraform-remote-bucket"
-    key    = "builders-scheduler-website"
+    bucket = "rhodh-terraform-remote-bucket"
+    key    = "about-me-infra"
     region = "eu-west-2"
   }
 }

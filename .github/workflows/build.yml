@@ -1,0 +1,80 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  buildApp: 
+    name: Build App
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./app
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js 16.9.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.9.x
+
+      - name: Install dependencies
+        run: npm install    
+
+      - name: Test
+        run: npm test -- --coverage
+        env:
+          CI: true
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+
+      - name: Generate build
+        run: npm run build
+
+      - name: Share artifact inside workflow
+        uses: actions/upload-artifact@v1
+        with:
+          name: react-build
+          path: build
+  
+  buildInfra:
+    name: Build App
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./app
+    steps:
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+
+    - name: configure aws credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
+        role-duration-seconds: 900 
+        aws-region: eu-west-2 
+
+    - name: Terraform fmt
+      id: fmt
+      run: terraform fmt -check
+
+    - name: Terraform Init
+      id: init
+      run: terraform init
+
+    - name: Terraform Validate
+      id: validate
+      run: terraform validate -no-color
+
+    - name: Terraform Plan
+      id: plan
+      run: terraform plan -no-color -out plan.tfplan 
+
+    - name: Share artifact inside workflow
+      uses: actions/upload-artifact@v1
+      with:
+        name: terraform-build
+        path: plan.tfplan
