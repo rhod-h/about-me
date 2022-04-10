@@ -38,14 +38,14 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: react-build
-          path: build
+          path: app/build
   
   buildInfra:
     name: Build Infra
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./app
+        working-directory: ./infrastructure
     permissions:
       id-token: write 
       contents: read 
@@ -80,4 +80,4 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: terraform-build
-        path: plan.tfplan
+        path: infrastructure/plan.tfplan
