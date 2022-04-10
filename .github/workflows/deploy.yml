@@ -138,6 +138,9 @@ jobs:
         name: react-build
         path: ./app
 
+    - name: Display structure of downloaded files
+      run: ls -R
+
     - name: Deploy to S3
       uses: jakejarvis/s3-sync-action@master
       with:
@@ -145,4 +148,4 @@ jobs:
       env:
         AWS_S3_BUCKET: aboutme.rhodh.com
         AWS_REGION: eu-west-2 
-        SOURCE_DIR: "build"
+        SOURCE_DIR: "./app/build"
