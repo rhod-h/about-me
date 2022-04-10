@@ -21,14 +21,13 @@ export default function Title({ title, summary, image }: TitleProps) {
       }}
     >
       <Container maxWidth="sm">
-        <Grid container spacing={2}>
+        <Grid container spacing={2} alignItems="center" justifyContent="center">
           <Grid item xs={8}>
             <Typography
               component="h1"
               variant="h2"
               align="center"
               color="text.primary"
-              gutterBottom
             >
               {title}
             </Typography>

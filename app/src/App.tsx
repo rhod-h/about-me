@@ -17,7 +17,7 @@ export default function App() {
         <Title title="About Rhodh" summary="Build things and lead inquisitive empowered teams" image={Hat} />
         <Container sx={{ py: 8 }} maxWidth="md">
           <Grid container spacing={4}>
-            <Grid item key="githubUser" xs={12} sm={6} md={4}>
+            <Grid item key="githubUser" xs={12} sm={6} md={6}>
               <DisplayCard
                 heading="Github User"
                 describe="See the Rhodh personal Github account"
@@ -26,7 +26,7 @@ export default function App() {
                 linkLabel="See Github User"
               />
             </Grid>
-            <Grid item key="githubOrg" xs={12} sm={6} md={4}>
+            <Grid item key="githubOrg" xs={12} sm={6} md={6}>
               <DisplayCard
                 heading="Github Organization"
                 describe="See the rhod-h Organizational work"
