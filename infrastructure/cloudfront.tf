@@ -13,6 +13,8 @@ resource "aws_cloudfront_distribution" "site" {
 
   viewer_certificate {
     cloudfront_default_certificate = true
+    acm_certificate_arn            = aws_acm_certificate.default.arn
+    ssl_support_method             = "sni-only"
   }
 
   custom_error_response {
@@ -28,7 +30,7 @@ resource "aws_cloudfront_distribution" "site" {
   }
 
   # Route53 requires Alias/CNAME to be setup
-  #aliases = ["${var.s3_bucket_name}"]
+  aliases = ["${var.s3_bucket_name}"]
 
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
