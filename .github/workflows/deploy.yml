@@ -113,4 +113,4 @@ jobs:
 
     - name: Terraform Apply
       id: Apply
-      run: terraform apply plan.tfplan -no-color -auto-approve
+      run: terraform apply -no-color -auto-approve plan.tfplan
