@@ -81,3 +81,36 @@ jobs:
       with:
         name: terraform-build
         path: infrastructure/plan.tfplan
+
+  infra:
+    name: Deploy Infra
+    runs-on: ubuntu-latest
+    needs: buildInfra
+    permissions:
+      id-token: write 
+      contents: read 
+    defaults:
+      run:
+        working-directory: ./infrastructure
+    steps:
+    - uses: actions/checkout@v2
+    - uses: hashicorp/setup-terraform@v1
+
+    - name: configure aws credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
+        role-duration-seconds: 900 
+        aws-region: eu-west-2 
+
+    - uses: actions/download-artifact@v3
+      with:
+        name: terraform-build
+        path: ./infrastructure
+
+    - name: Display structure of downloaded files
+      run: ls -R
+
+    - name: Terraform Apply
+      id: Apply
+      run: terraform apply plan.tfplan -no-color -auto-approve
