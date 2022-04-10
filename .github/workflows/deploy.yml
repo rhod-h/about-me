@@ -72,15 +72,10 @@ jobs:
       id: validate
       run: terraform validate -no-color
 
-    - name: Terraform Plan
+    - name: Terraform Plan # Run plan to catch any errors not found in validation
       id: plan
       run: terraform plan -no-color -out plan.tfplan 
 
-    - name: Share artifact inside workflow
-      uses: actions/upload-artifact@v1
-      with:
-        name: terraform-build
-        path: infrastructure/plan.tfplan
 
   infra:
     name: Deploy Infra
@@ -103,13 +98,9 @@ jobs:
         role-duration-seconds: 900 
         aws-region: eu-west-2 
 
-    - uses: actions/download-artifact@v3
-      with:
-        name: terraform-build
-        path: ./infrastructure
-
-    - name: Display structure of downloaded files
-      run: ls -R
+    - name: Terraform Plan
+      id: plan
+      run: terraform plan -no-color -out plan.tfplan 
 
     - name: Terraform Apply
       id: Apply
