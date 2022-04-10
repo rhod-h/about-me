@@ -136,7 +136,7 @@ jobs:
     - uses: actions/download-artifact@v3
       with:
         name: react-build
-        path: ./app
+        path: ./app/build
 
     - name: Display structure of downloaded files
       run: ls -R
