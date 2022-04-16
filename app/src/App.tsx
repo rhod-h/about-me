@@ -8,6 +8,7 @@ import Title from './Title';
 import DisplayCard from './DisplayCard';
 import Github from './Resources/GithubLogo.png';
 import Hat from './Resources/Hat.jpeg';
+import CV from './Resources/CV.png';
 
 export default function App() {
   return (
@@ -17,6 +18,15 @@ export default function App() {
         <Title title="About Rhodh" summary="Build things and lead inquisitive empowered teams" image={Hat} />
         <Container sx={{ py: 8 }} maxWidth="md">
           <Grid container spacing={4}>
+            <Grid item key="cv" xs={12} sm={6} md={6}>
+              <DisplayCard
+                heading="CV"
+                describe="See Rhodh CV"
+                image={CV}
+                url="https://cv.rhodh.com"
+                linkLabel="See Rhodh CV"
+              />
+            </Grid>
             <Grid item key="githubUser" xs={12} sm={6} md={6}>
               <DisplayCard
                 heading="Github User"
@@ -35,6 +45,7 @@ export default function App() {
                 linkLabel="See Github Organization"
               />
             </Grid>
+
           </Grid>
         </Container>
       </main>
