@@ -8,10 +8,13 @@ import Grid from '@mui/material/Grid';
 interface TitleProps {
     title: string;
     summary: string;
+    additional: string
     image?: string
 }
 
-export default function Title({ title, summary, image }: TitleProps) {
+export default function Title({
+  title, summary, image, additional,
+}: TitleProps) {
   return (
     <Box
       sx={{
@@ -36,8 +39,11 @@ export default function Title({ title, summary, image }: TitleProps) {
             <Avatar alt="Rhodh" src={image} sx={{ width: 70, height: 70 }} />
           </Grid>
         </Grid>
-        <Typography variant="h5" align="center" color="text.secondary" paragraph>
+        <Typography variant="h5" align="center" color="text.secondary">
           {summary}
+        </Typography>
+        <Typography variant="subtitle2" align="center" color="text.secondary" sx={{ fontStyle: 'italic' }}>
+          {additional}
         </Typography>
       </Container>
     </Box>

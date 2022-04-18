@@ -15,18 +15,14 @@ export default function App() {
     <ThemeProvider theme={createTheme()}>
       <Header label="About Rhodri Hewitson" />
       <main>
-        <Title title="About Rhodh" summary="Build things and lead inquisitive empowered teams" image={Hat} />
+        <Title
+          title="About Rhodh"
+          summary="Build things and lead inquisitive empowered teams."
+          additional="This site in built in React, it's deployment is delivered by Terraform and Github Actions"
+          image={Hat}
+        />
         <Container sx={{ py: 8 }} maxWidth="md">
           <Grid container spacing={4}>
-            <Grid item key="cv" xs={12} sm={6} md={6}>
-              <DisplayCard
-                heading="CV"
-                describe="See Rhodh CV"
-                image={CV}
-                url="https://cv.rhodh.com"
-                linkLabel="See Rhodh CV"
-              />
-            </Grid>
             <Grid item key="cv" xs={12} sm={6} md={6}>
               <DisplayCard
                 heading="Blog"
@@ -34,6 +30,15 @@ export default function App() {
                 image={Blog}
                 url="https://blog.rhodh.com"
                 linkLabel="See Blog"
+              />
+            </Grid>
+            <Grid item key="cv" xs={12} sm={6} md={6}>
+              <DisplayCard
+                heading="CV"
+                describe="See Rhodh CV"
+                image={CV}
+                url="https://cv.rhodh.com"
+                linkLabel="See Rhodh CV"
               />
             </Grid>
             <Grid item key="githubOrg" xs={12} sm={6} md={6}>

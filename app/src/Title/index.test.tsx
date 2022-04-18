@@ -7,8 +7,10 @@ import Title from '.';
 test('shows Title text on a page', () => {
   const testTitle = 'Test Title';
   const testSummary = 'Test Summary';
-  render(<Title title={testTitle} summary={testSummary} />);
+  const testAdditional = 'Test Additional';
+  render(<Title title={testTitle} summary={testSummary} additional={testAdditional} />);
 
   expect(screen.getByText(testTitle)).toBeInTheDocument();
   expect(screen.getByText(testSummary)).toBeInTheDocument();
+  expect(screen.getByText(testAdditional)).toBeInTheDocument();
 });
