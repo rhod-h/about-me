@@ -3,12 +3,12 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Header from './Header';
-import Footer from './Footer';
 import Title from './Title';
 import DisplayCard from './DisplayCard';
 import Github from './Resources/GithubLogo.png';
 import Hat from './Resources/Hat.jpeg';
 import CV from './Resources/CV.png';
+import Blog from './Resources/Blog.jpg';
 
 export default function App() {
   return (
@@ -27,13 +27,13 @@ export default function App() {
                 linkLabel="See Rhodh CV"
               />
             </Grid>
-            <Grid item key="githubUser" xs={12} sm={6} md={6}>
+            <Grid item key="cv" xs={12} sm={6} md={6}>
               <DisplayCard
-                heading="Github User"
-                describe="See the Rhodh personal Github account"
-                image={Github}
-                url="https://github.com/rhodh/"
-                linkLabel="See Github User"
+                heading="Blog"
+                describe="See Blog"
+                image={Blog}
+                url="https://blog.rhodh.com"
+                linkLabel="See Blog"
               />
             </Grid>
             <Grid item key="githubOrg" xs={12} sm={6} md={6}>
@@ -45,12 +45,18 @@ export default function App() {
                 linkLabel="See Github Organization"
               />
             </Grid>
-
+            <Grid item key="githubUser" xs={12} sm={6} md={6}>
+              <DisplayCard
+                heading="Github User"
+                describe="See the Rhodh personal Github account"
+                image={Github}
+                url="https://github.com/rhodh/"
+                linkLabel="See Github User"
+              />
+            </Grid>
           </Grid>
         </Container>
       </main>
-
-      <Footer header="About Rhodh" />
     </ThemeProvider>
   );
 }

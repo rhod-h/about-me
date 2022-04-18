@@ -26,6 +26,7 @@ export default function DisplayCard({
           pt: '10%',
         }}
         image={image}
+        height="340"
         alt="random"
       />
       <CardContent sx={{ flexGrow: 1 }}>
